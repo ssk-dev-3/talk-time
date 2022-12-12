@@ -1,0 +1,261 @@
+:root {
+  --color-main: #42CE9F;
+  --color-background: #F8FCFB;
+  --color-text: #333333;
+  --color-base: #EDEDED;
+  --color-shadow: #D3D6D5;
+}
+
+body {
+  font-size: 18px;
+  color: var(--color-text);
+  background-color: var(--color-background);
+}
+
+.section {
+  margin: 80px 13vw;
+}
+
+.mv.hidden,
+.section.hidden {
+  display: none;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.button {
+  display: block;
+  color: var(--color-background);
+  font-size: 32px;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin: 0 auto 64px;
+  padding: 20px 115px;
+  background-color: var(--color-main);
+  border: 2px solid var(--color-main);
+  border-radius: 50px;
+  text-decoration: none;
+  transition: opacity 0.5s;
+}
+
+.button:hover {
+  color: var(--color-background);
+  opacity: 0.7;
+}
+
+.button.reverse {
+  color: var(--color-main);
+  background-color: var(--color-background);
+  border: 2px solid var(--color-main);
+}
+
+.button.reverse:hover {
+  color: var(--color-main);
+}
+
+.instruction {
+  margin-bottom: 64px;
+}
+
+.headline {
+  color: var(--color-main);
+  font-size: 5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  line-height: 1;
+  margin-bottom: 0;
+}
+
+.subhead {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 32px;
+}
+
+.item-headline {
+  font-weight: bold;
+  padding-left: 16px;
+  border-left: 4px solid var(--color-main);
+}
+
+.content {
+  margin-bottom: 64px;
+}
+
+.content-item {
+  margin-bottom: 64px;
+}
+
+.content-item:last-of-type {
+  margin-bottom: 0;
+}
+
+.next-link {
+  position: relative;
+  display: block;
+  color: var(--color-main);
+  font-weight: bold;
+  text-align: end;
+  margin: 0 48px 0 0;
+  text-decoration: none;
+}
+
+.next-link::before {
+  position: absolute;
+  content: '';
+  width: 97px;
+  bottom: 0;
+  border-bottom: 1px solid var(--color-main);
+}
+
+.next-link::after {
+  position: absolute;
+  content: '';
+  width: 48px;
+  height: 27px;
+  background-image: url('../images/keyboard_double_arrow_right.svg');
+  background-repeat: no-repeat;
+  background-size: 80%;
+  background-position: 0 -6px;
+}
+
+.next-link,
+.next-link::before,
+.next-link::after {
+  cursor: pointer;
+  transition: opacity 0.5s;
+}
+
+.next-link:hover {
+  color: var(--color-main);
+  opacity: 0.7;
+}
+
+.card {
+  position: relative;
+  width: 24rem;
+  height: 240px;
+  box-shadow: 20px 20px 60px var(--color-shadow);
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.card.reverse{
+  background-color: var(--color-main);
+}
+
+.card-front,
+.card-back {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+}
+
+.card-front {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 85px 1rem 3rem;
+  border-radius: 0 0 20px 20px;
+  line-height: 1.4;
+}
+
+.card-front::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: var(--color-background);
+  font-size: 1.5rem;
+  font-weight: bold;
+  width: 100%;
+  padding: 1rem;
+  background-color: var(--color-main);
+  border-radius: 20px 20px 0 0;
+}
+
+.card.reverse > .card-front {
+  display: none;
+}
+
+.card-back {
+  display: none;
+  background-color: var(--color-main);
+}
+
+.card-back::before {
+  position: absolute;
+  content: 'TALK\ATIME';
+  white-space: pre;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--color-main);
+  font-size: 2rem;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  background-color: var(--color-background);
+  border-radius: 8px;
+  line-height: 0.9;
+}
+
+.card.reverse > .card-back {
+  display: block;
+}
+
+.modal {
+  visibility: hidden;
+  opacity: 0;
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: visibility 0.4s, opacity 0.4s;
+}
+
+.modal.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+.modal-background {
+  width: 100%;
+  height: 100%;
+  background-color: #6a6a6a;
+  opacity: 0.8;
+}
+
+/*************************************
+modal
+**************************************/
+.modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(70%, 1170px);
+  padding: 45px 80px;
+  background-color: var(--color-background);
+  border-radius: 20px;
+}
+
+.modal-close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  cursor: pointer;
+}
+
+.modal-content-headline {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 64px;
+}
+
+.modal-content-body {
+  margin-bottom: 64px;
+}

@@ -1,0 +1,342 @@
+/*************************************
+ Top Page
+**************************************/
+.mv {
+  width: min(100vw, 1920px);
+  height: min(100vh, 1080px);
+  background-image: url('../images/mv-pc.svg');
+  background-repeat: no-repeat;
+  background-position: top 50% right -230px;
+  background-color:rgba(255,255,255,0.2);
+  background-blend-mode:lighten;
+}
+
+.mv-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: max(50%, 960px);
+  height: 100%;
+}
+
+.title {
+  font-size: 10rem;
+  font-weight: bold;
+  color: var(--color-main);
+  margin-bottom: 0;
+  line-height: 1;
+}
+
+.subtitle {
+  position: relative;
+  font-size: 1.8rem;
+  margin-bottom: 64px;
+}
+
+.subtitle::before,
+.subtitle::after {
+  position: absolute;
+  content: '';
+  top: 50%;
+  width: 80px;
+  border-top: 1px solid var(--color-text);
+}
+
+.subtitle::before {
+  left: -90px;
+}
+
+.subtitle::after {
+  right: -90px;
+}
+
+/*************************************
+Phase 1
+**************************************/
+.mission-card {
+  margin: 0 auto;
+}
+
+.mission-card > .card-front::before {
+  content: 'MISSION';
+}
+
+.button-area {
+  display: flex;
+  justify-content: center;
+}
+
+.mission-modal-button {
+  width: 240px;
+  margin: 0 3rem;
+  padding: 0;
+}
+
+/*************************************
+Phase 2
+**************************************/
+.board-tab-list {
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.tab {
+  color: var(--color-main);
+  font-weight: bold;
+  text-align: center;
+  width: 10rem;
+  background-color: var(--color-base);
+  border: 2px solid var(--color-main);
+  padding: 16px 32px;
+  list-style: none;
+  cursor: pointer;
+  transition: color 0.5s, background-color 0.5s;
+}
+
+.tab:first-of-type {
+  border-right: none;
+  border-top-left-radius: 20px;
+}
+
+.tab:last-of-type {
+  border-left: none;
+  border-top-right-radius: 20px;
+}
+
+.tab:hover {
+  color: var(--color-background);
+  background-color: var(--color-main);
+}
+
+.tab.active {
+  color: var(--color-background);
+  background-color: var(--color-main);
+  border: 2px solid var(--color-main);
+}
+
+.board-body {
+  background-color: var(--color-base);
+  border-radius: 0 20px 20px 20px;
+}
+
+.theme-card-list {
+  display: none;
+}
+
+.theme-card-list.active {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  place-items: center;
+  gap: 32px;
+  padding: 32px;
+}
+
+.theme-card {
+  position: relative;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  width: 100%;
+  min-height: 160px;
+  background-color: var(--color-background);
+  padding: 36px 0;
+  border: none;
+  border-radius: 20px;
+  transition: background-color 0.5s;
+}
+
+.emotion-board {
+  background-color: var(--color-base);
+  border-radius: 20px;
+}
+
+.emotion-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 18px;
+  padding: 32px;
+}
+
+.emotion {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  width: 120px;
+  height: 120px;
+  padding: 36px 0;
+  background-color: var(--color-background);
+  border: none;
+  border-radius: 20px;
+  transition: background-color 0.5s;
+}
+
+.theme-card:hover,
+.emotion:hover {
+  color: var(--color-background);
+  background-color: var(--color-main);
+}
+
+.theme-card.active,
+.emotion.active {
+  color: var(--color-background);
+  background-color: var(--color-main);
+}
+
+.direction {
+  margin: 0 5vw;
+}
+
+.direction-message {
+  font-size: 3.5rem;
+  font-weight: bold;
+  margin-bottom: 32px;
+}
+
+.direction-note {
+  margin-bottom: 64px;
+}
+
+/*************************************
+Phase 3
+**************************************/
+.bounce-card-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 32px;
+}
+
+.bounce-card > .card-front::before {
+  content: 'BOUNCE';
+}
+
+/*************************************
+Phase 4
+**************************************/
+.look-back-headline {
+  display: flex;
+  align-items: center;
+  column-gap: 10rem;
+  margin-bottom: 1rem;
+}
+
+.epilogue-headline {
+  margin-bottom: 0;
+}
+
+.epilogue-open-button {
+  font-size: 1rem;
+  margin: 0;
+  padding: 0.1rem 2rem;
+  border-radius: 10px;
+}
+
+.epilogue-theme {
+  position: relative;
+  font-size: 2rem;
+  font-weight: bold;
+  min-height: 100px;
+  padding: 1.4rem;
+  background-color: var(--color-base);
+  border-radius: 20px;
+}
+
+.epilogue-text {
+  margin-bottom: 0;
+}
+
+.mission-card,
+.mission-card.reverse {
+  width: 24rem;  
+}
+
+/*************************************
+Reminder
+**************************************/
+.reminder-wrapper {
+  display: block;
+}
+
+.reminder-wrapper.hidden {
+  display: none;
+}
+
+.reminder {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: var(--color-background);
+  margin: 0;
+  padding: 24px 64px;
+  box-shadow: 0 2px 20px #D3D6D5;
+  z-index: 20;
+  transition: top 0.5s;
+}
+
+.reminder.hidden {
+  top: 100%;
+}
+
+.reminder-arrow {
+  position: absolute;
+  top: -31px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 130px;
+  background-color: #F1F5F4;
+  border-radius: 20px 20px 0 0;
+  box-shadow: 0 -2px 2px #D3D6D5;
+  text-align: center;
+  cursor: pointer;
+}
+
+.arrow-icon {
+  width: 32px;
+}
+
+.reminder.hidden .arrow-icon {
+  transform: rotate(180deg);
+}
+
+.reminder-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 120px;
+}
+
+.reminder-theme-card > .card-front {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding-top: 100px;
+}
+
+.reminder-theme-card > .card-front::before {
+  content: 'THEME';
+}
+
+.reminder-theme-category {
+  color: var(--color-background);
+  font-size: 1rem;
+  padding: 2px 0.5rem;
+  background-color: var(--color-main);
+  border-radius: 4px;
+}
+
+.reminder-theme-item {
+  font-size: 2rem;
+}
+
+.reminder-emotion,
+.reminder-emotion:hover {  
+  color: var(--color-background);
+  height: 80px;
+  background-color: var(--color-main);
+  padding: 1.5rem;
+}
+
+.reminder-theme-card {
+  cursor: inherit;
+}

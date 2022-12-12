@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TALK TIME</title>
+  <link rel="stylesheet" href="./assets/styles/reboot.css">
+  <link rel="stylesheet" href="./assets/styles/common.css">
+  <link rel="stylesheet" href="./assets/styles/index.css">
+  <script src="./assets/scripts/missions.json.js"></script>
+  <script src="./assets/scripts/themes.json.js"></script>
+  <script src="./assets/scripts/emotion.json.js"></script>
+  <script src="./assets/scripts/bounces.json.js"></script>
+  <script src="./assets/scripts/epilogues.json.js"></script>
+  <script src="./assets/scripts/index.js"></script>
+</head>
+<body>
+  <div class="wrapper">
+    <!-- TOP PAGE -->
+    <div class="mv" id="mv">
+      <div class="mv-content">
+        <h1 class="title">TALK TIME</h1>
+        <p class="subtitle">1on1をもっと楽しく、有意義に</p>
+        <button class="button" onclick="moveToNextPhase(event)" data-current="mv" data-next="phase1">スタート</a>
+      </div>
+    </div>
+    <!-- /TOP PAGE -->
+
+    <!-- Phase1 -->
+    <section class="section hidden" id="phase1">
+      <div class="instruction">
+        <h2 class="headline">SET READY</h2>
+        <p class="subhead">聞き手のあなたにミッションを授けます。</p>
+        <p class="description">
+          会話を始める前に、会話を盛り上げるちょっとしたスパイスとして、聞き手のあなたにミッションを授けます。<br>
+          この会話が終わるまでは、指示されたミッションを守って会話を進めてください。<br>
+          ちなみに、ミッションの内容は<span class="bold">秘密</span>です。<br>
+          絶対話し手に教えてはいけません。見られないようにコッソリ確認してください。<br>
+          <br>
+          確認できたら次へ進みましょう。
+        </p>
+      </div>
+      <button type="button" id="modal-open-button" class="button" onclick="showMissionModal()">確認する</button>
+      <a class="next-link" href="#phase2" onclick="moveToNextPhase(event)" data-current="phase1" data-next="phase2">
+        次へ進む
+      </a>
+
+      <!-- Mission Modal -->
+      <div id="mission-modal" class="modal">
+        <div id="modal-background" class="modal-background" onclick="toggleModal('mission-modal')"></div>
+          <div class="modal-content">
+            <div id="modal-close" class="modal-close" onclick="toggleModal('mission-modal')">
+              <img src="./assets/images/close.svg" alt="×">
+            </div>
+            <div class="modal-content-headline">
+              <h4>あなたに授けるミッションはコレです。</h4>
+            </div>
+            <div class="modal-content-body">
+              <div class="card mission-card">
+                <div id="mission-text" class="card-front"></div>
+                <div class="card-back"></div>
+              </div>
+            </div>
+            <div class="button-area">
+              <button type="button" class="button reverse mission-modal-button" onclick="getMission()">change</button>
+              <button type="button" class="button mission-modal-button" onclick="decideMission()">ok</button>
+            </div>
+          </div>
+      </div>
+      <!-- /Mission Modal -->
+    </section>
+    <!-- /Phase1 -->
+
+    <!-- Phase2 -->
+    <section class="section hidden" id="phase2">
+      <div class="instruction">
+        <h2 class="headline">SELECT THEME</h2>
+        <p class="subhead">トークテーマを決めましょう。</p>
+        <p class="description">
+          それでは、話し手のあなたに今回のトークテーマを決めてもらいます。<br>
+          話したい「テーマ」と「感情」をそれぞれ選んでください。<br>
+          <br>
+          トークテーマが決まったら、スタートボタンを押して、話し手のあなたからトークを始めてください。
+        </p>
+      </div>
+      <div class="content">
+        <div class="content-item">
+          <p class="item-headline">テーマ</p>
+          <div class="item-body">
+            <div class="theme-board">
+              <div>
+                <ul class="board-tab-list">
+                  <li class="tab js-tab active" onclick="selectThemeTab(event)" data-category="private">プライベート</li>
+                  <li class="tab js-tab" onclick="selectThemeTab(event)" data-category="work">仕事</li>
+                  <li class="tab js-tab" onclick="selectThemeTab(event)" data-category="company">会社</li>
+                </ul>
+              </div>
+              <div class="board-body">
+                <div id="private" class="theme-card-list js-theme-card-list"></div>
+                <div id="work" class="theme-card-list js-theme-card-list"></div>
+                <div id="company" class="theme-card-list js-theme-card-list"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="content-item">
+          <p class="item-headline">感情</p>
+          <div class="item-body">
+            <div class="emotion-board">
+              <div id="emotion-list" class="emotion-list">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button type="button" class="button" onclick="startTalk()">スタート</button>
+      </div>
+
+      <!-- Direction Modal -->
+      <div id="direction-modal" class="modal">
+        <div id="modal-background" class="modal-background"></div>
+          <div class="modal-content">
+            <div class="modal-content-body">
+              <div class="direction">
+                <h3 class="direction-message">さぁ、会話をはじめましょう！</h3>
+                <p class="direction-note">
+                  聞き手のミッション、トークテーマはいつでも確認できるようにしておきますね。<br>
+                  画面下部の<img src="./assets/images/keyboard_arrow_up.svg" alt="上矢印">をクリックしたら表示できます。<br>
+                  <br>
+                  話し手のお話がひと段落したら、次へ進みましょう。<br>
+                </p>
+              </div>
+            </div>
+            <a class="next-link" href="#phase3" onclick="moveToNextPhase(event)" data-current="phase2" data-next="phase3">次へ進む</a>
+          </div>
+      </div>
+      <!-- /Direction Modal -->
+    </section>
+    <!-- /Phase2 -->
+
+    <!-- Phase3 -->
+    <section class="section hidden" id="phase3">
+      <div class="instruction">
+        <h2 class="headline">BOUNCE</h2>
+        <p class="subhead">ここでちょっとおせっかいしますね。</p>
+        <p class="description">
+          さて、ここで「バウンスカード」のプレゼントです。<br>
+            <br>
+            「バウンスカード」とは、会話を弾ませるためのアイテムです。<br>
+            おせっかいかもしれませんが、受け取ってください。<br>
+            <br>
+            バウンスカードには、<br>
+            より話し手の自己理解を深めるための会話のタネが書かれています。<br>
+            話し手のあなたは書かれている内容について、<br>
+            頭に浮かんだこと、感じることをなんでも正直に話してみてください。<br>
+            <br>
+            1つずつバウンスカードをクリックでめくり、全ての会話が終わったらクロージングに進みましょう。<br>
+        </p>
+      </div>
+      <div class="content">
+        <div class="bounce-card-list">
+          <div class="card bounce-card reverse" onclick="openCard(event)">
+            <div class="card-front js-bounce-card-body"></div>
+            <div class="card-back"></div>
+          </div>
+          <div class="card bounce-card reverse" onclick="openCard(event)">
+            <div class="card-front js-bounce-card-body"></div>
+            <div class="card-back"></div>
+          </div>
+          <div class="card bounce-card reverse" onclick="openCard(event)">
+            <div class="card-front js-bounce-card-body"></div>
+            <div class="card-back"></div>
+          </div>
+        </div>
+      </div>
+      <a class="next-link" href="#phase4" onclick="moveToNextPhase(event)" data-current="phase3" data-next="phase4">次へ進む</a>
+    </section>
+    <!-- /Phase3 -->
+
+    <!-- Reminder -->
+    <div id="reminder-wrapper" class="reminder-wrapper hidden">
+      <div id="reminder" class="reminder hidden">
+        <div class="reminder-arrow" onclick="toggleReminder(event)">
+          <img src="./assets/images/keyboard_arrow_down.svg" alt="下矢印" class="arrow-icon">
+        </div>
+        <div class="reminder-content">
+          <div class="reminder-content-item">
+            <p class="item-headline">ミッション</p>
+            <div class="item-content">
+              <div class="card mission-card js-mission-card reverse" onclick="toggleMissionCardOnReminder(event)">
+                <div id="reminder-mission" class="card-front"></div>
+                <div class="card-back"></div>
+              </div>
+            </div>
+          </div>
+          <div class="reminder-content-item">
+            <p class="item-headline">テーマ</p>
+            <div class="item-content">
+              <div class="card reminder-theme-card">
+                <div class="card-front">
+                  <div class="reminder-theme">
+                    <span id="reminder-theme-category" class="reminder-theme-category"></span>
+                    <p id="reminder-theme-item" class="reminder-theme-item"></p>
+                  </div>
+                  <div id="reminder-emotion" class="card-front emotion reminder-emotion"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /Reminder -->
+
+    <!-- Phase4 -->
+    <section class="section hidden" id="phase4">
+      <div class="instruction">
+        <h2 class="headline">CLOSE</h2>
+        <p class="subhead">今回の会話を振り返ってみましょう。</p>
+        <p class="description">
+          お疲れ様でした。<br>
+          今回の会話はいかがでしたか？<br>
+          <br>
+          せっかくなので、自分のこれからの糧になるよう少し振り返ってみましょう。<br>
+        </p>
+      </div>
+      <div class="content">
+        <div class="content-item">
+          <div class="look-back-headline">
+            <p class="item-headline epilogue-headline">エピローグテーマ</p>
+            <button class="button epilogue-open-button" onclick="openEpilogueTheme(event)">オープン</button>
+          </div>
+          <div class="item-body">
+            <p class="description">
+              まず、エピローグテーマを決めましょう。<br>
+              こちらでテーマを用意したので、オープンしてください。<br>
+              そこに表示された内容について、話し手のあなたが思うままに話してみてください。<br>
+            </p>
+            <div class="epilogue-theme">
+              <p id="epilogue-theme" class="epilogue-text"></p>
+            </div>
+          </div>
+        </div>
+        <div class="content-item">
+          <p class="item-headline">ミッションオープン</p>
+          <div class="item-body">
+            <p class="description">
+              続いて、聞き手のあなたに授けたミッションについて振り返ってみましょう。<br>
+              カードをめくって、ミッションをオープンしてください。<br>
+              聞き手がきちんとミッションを遂行できたかどうかを話し合ってみてください。<br>
+            </p>
+            <div class="open-mission">
+              <div class="card mission-card reverse" onclick="openCard(event)">
+                <div id="look-back-mission" class="card-front"></div>
+                <div class="card-back"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a class="next-link" href="#mv" onclick="window.location.reload();" data-current="phase4" data-next="mv">TOPへ戻る</a>
+    </section>
+    <!-- /Phase4 -->
+  </div>
+</body>
+</html>

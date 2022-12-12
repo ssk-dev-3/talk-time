@@ -1,0 +1,17 @@
+window.THEMES = [
+  {id: 0, category: 'private', value: '健康'},
+  {id: 1, category: 'private', value: '趣味'},
+  {id: 2, category: 'private', value: '興味'},
+  {id: 3, category: 'private', value: '自己成長'},
+  {id: 4, category: 'private', value: 'イベント'},
+  {id: 5, category: 'private', value: 'キャリア'},
+  {id: 6, category: 'work', value: '現場'},
+  {id: 7, category: 'work', value: '支援・ヘルプ'},
+  {id: 8, category: 'work', value: '人間関係'},
+  {id: 9, category: 'work', value: '承認・アピール'},
+  {id: 10, category: 'company', value: '理念戦略'},
+  {id: 11, category: 'company', value: '組織風土'},
+  {id: 12, category: 'company', value: '環境'},
+  {id: 13, category: 'company', value: '経営理念'},
+  {id: 14, category: 'company', value: '教育・研修'},
+]
